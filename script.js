@@ -13,6 +13,9 @@ var timeGauge = document.querySelector("#timeGuage");
 var progress = document.querySelector("#progress");
 var scoreDiv = document.querySelector("#scoreContainer");
 var userScore = JSON.parse(localStorage.getItem(userScore));
+var highScore = JSON.parse(localStorage.getItem(highScore));
+var highDiv= document.querySelector("#highScoreContainer");
+
 
 let questions = [{
         question: "Who was Sarpedon's father in the Iliad?",
@@ -47,7 +50,7 @@ const gaugeWidth =150;
 const gaugeUnit= gaugeWidth / questionTime;
 // let TIMER;
 let score=0;
-
+var highScore = 0;
 
 
 
@@ -141,6 +144,7 @@ function check(answer){
         clearInterval(timer);
         scoreRender();
         localStorage.setItem("userScore",userScore);
+        localStorage.setItem("highScore", highScore);
     }
 }
 
@@ -155,8 +159,13 @@ function scoreRender(){
     // score = JSON.parse(localStorage.getItem(userScore));
     Quiz.style.display="none";
     scoreDiv.style.display="block";
+    highDiv.style.display="block";
     scoreDiv.innerHTML = "<p>SCORE: " + userScore + " out of 10</p>";
-    console.log(score);
+    highDiv.innerHTML= "<p> PREVIOUS HIGH SCORE: " + highScore + " !";
+    if (userScore > highScore){
+        userScore.append(highScore);
+        console.log(highScore);
+    }
     // const scorePerCent = Math.round(100 * score/questions.length);
     
 }

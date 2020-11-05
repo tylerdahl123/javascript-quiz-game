@@ -7,7 +7,29 @@
 </head>
 <body>
     <div class="container">
-        <div id="startBtn"><button class="start">START!</button></div>
-    </div>
+        <h1>ILLIAD QUIZ</h1>
+        <div id="theQuiz" class="row quiz">
+                <div class="col-sm-12">
+                    <h2 id="header"></h2>
+                </div>
+        </div>
+        <div id="theQuestions" class="row">
+            <div class-"col-sm-4"><a data-id="1" class="buttonAnswer>1</a></div>
+        </div>
+        <div id="startBtn"><button class="start" onClick= "start()">START!</button></div>
+        <div id="quiz" style="display:none"></div>
+        <h2 id="theQuestions" class ="row"></h2>
+            <div id="answerChoices">
+                <button  id="a"></button>
+                <button id="b"></button>
+                <button id= "c"></button>
+                <button id="d"></button>
+            </div>
+            <div id="userChoice" style="display:none"></div>
+            <div id="highscores" style="display:none"></div>
+            <div id="highScoremessage"></div>
+            <div><button id="restart" class="quizRestart">TRY AGAIN?</button></div>
+    </div> 
+    <script src="script.js"></script>
 </body>
 </html>

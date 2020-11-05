@@ -12,7 +12,7 @@ var timer = document.querySelector("#counter");
 var timeGauge = document.querySelector("#timeGuage");
 var progress = document.querySelector("#progress");
 var scoreDiv = document.querySelector("#scoreContainer");
-var userScore = localStorage.getItem(userScore);
+var userScore = JSON.parse(localStorage.getItem(userScore));
 
 let questions = [{
         question: "Who was Sarpedon's father in the Iliad?",
@@ -45,7 +45,7 @@ let count = 0;
 const questionTime = 10;
 const gaugeWidth =150;
 const gaugeUnit= gaugeWidth / questionTime;
-let TIMER;
+// let TIMER;
 let score=0;
 
 
@@ -75,7 +75,11 @@ start.addEventListener("click", startQuiz);
             if (sec < 0) {
                 clearInterval(timer);
                 alert("Time is up!")
-                return Quiz;
+                return;
+            }
+            if (answerIsWrong){
+                let a = 5;
+                timer=-a;
             }
         }, 1000);
     }
@@ -93,7 +97,7 @@ renderQuestion();
 Quiz.style.display = "block";
 renderProgress();
 // renderCounter();
-TIMER = setInterval(renderCounter,1000);
+// TIMER = setInterval(renderCounter,1000);
 }
 
 
@@ -134,7 +138,7 @@ function check(answer){
         runningQuestion++;
         renderQuestion();
     }else{
-        clearInterval(TIMER);
+        clearInterval(timer);
         scoreRender();
         localStorage.setItem("userScore",userScore);
     }
@@ -145,12 +149,15 @@ function answerIsCorrect(){
 }
 function answerIsWrong(){
     alert("SORRY!");
-    timer --;
 }
 
 function scoreRender(){
-    scoreDiv.style.display ="block"
-    const scorePerCent = Math.round(100 * score/questions.length);
+    // score = JSON.parse(localStorage.getItem(userScore));
+    Quiz.style.display="none";
+    scoreDiv.style.display="block";
+    scoreDiv.innerHTML = "<p>SCORE: " + userScore + " out of 10</p>";
+    console.log(score);
+    // const scorePerCent = Math.round(100 * score/questions.length);
     
 }
 

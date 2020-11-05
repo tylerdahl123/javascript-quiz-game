@@ -8,10 +8,10 @@ var dChoice = document.querySelector("#d");
 var userChoice= document.querySelector("#userChoice");
 var choiceResponse=document.querySelector("#choiceResponse");
 var answerChoices = document.querySelector("#choices");
-var timer = document.getElementById("counter");
-var timeGauge = document.getElementById("timeGuage");
-var progress = document.getElementById("progress");
-var scoreDiv = document.getElementById("scoreContainer");
+var timer = document.querySelector("#counter");
+var timeGauge = document.querySelector("#timeGuage");
+var progress = document.querySelector("#progress");
+var scoreDiv = document.querySelector("#scoreContainer");
 var userScore = localStorage.getItem(userScore);
 
 let questions = [{
@@ -62,7 +62,11 @@ function renderQuestion () {
     dChoice.innerHTML=q.dChoice;
     answerChoices.style.display = "block";
 }
+
+
 start.addEventListener("click", startQuiz);
+
+
 function startQuiz(){
 start.style.display="none";
 renderQuestion();
@@ -72,12 +76,31 @@ renderCounter();
 TIMER = setInterval(renderCounter,1000);
 }
 
+
 function renderProgress(){
-    for(var qIndex = 0; qIndex<= lastQuestion; qIndex++){
-        Progress.innerHTML +="<div class='prog' id ="+qindex+"></div>";
+    for(let qIndex = 0; qIndex < lastQuestion; qIndex++){
+        progress.innerHTML +="<div class='prog' id ="+qIndex+"></div>";
     }
 }
 
+
+function rednerCounter(){
+    if (count <=questionTime){
+        counter.innerHtml = count;
+        timeGauge.style.width = count * gaugeUnit + "px";
+        count ++
+    }else{
+        count = 0;
+        answerIsWrong();
+        if(runningQuestion < lastQuestion){
+            runningQuestion ++;
+            renderQuestion();
+        }else{
+            clearInterval(TIMER);
+            scoreRender();
+        }
+    }
+}
 function check(answer){
     if (answer == questions[runningQuestion].correctAnswer){
         userScore++;

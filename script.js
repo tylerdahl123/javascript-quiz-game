@@ -39,7 +39,7 @@ let questions = [{
         correctAnswer: "a",
     },
 ];
-const lastQuestion = questions.legnth -1;
+const lastQuestion = questions.length -1;
 let runningQuestion =0;
 let count = 0;
 const questionTime = 10;

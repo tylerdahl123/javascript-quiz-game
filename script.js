@@ -65,6 +65,26 @@ function renderQuestion () {
 
 
 start.addEventListener("click", startQuiz);
+(function() {
+    var sec = 60;
+    function startTimer(){
+        console.log('timer suppose to go')
+        var timer = setInterval(function(){
+            sec--;
+            document.getElementById('timerDisplay').innerHTML='00:'+sec;
+            if (sec < 0) {
+                clearInterval(timer);
+                alert("Time is up!")
+                return Quiz;
+            }
+        }, 1000);
+    }
+    // document.getElementById('incorrect').addEventListener('click', function() {
+    //     sec -= 5;
+    //     document.getElementById('timerDisplay').innerHTML='00:'+sec;
+    // });
+    startTimer();
+})();
 
 
 function startQuiz(){
@@ -72,7 +92,7 @@ start.style.display="none";
 renderQuestion();
 Quiz.style.display = "block";
 renderProgress();
-renderCounter();
+// renderCounter();
 TIMER = setInterval(renderCounter,1000);
 }
 
@@ -84,29 +104,30 @@ function renderProgress(){
 }
 
 
-function rednerCounter(){
-    if (count <=questionTime){
-        counter.innerHtml = count;
-        timeGauge.style.width = count * gaugeUnit + "px";
-        count ++
-    }else{
-        count = 0;
-        answerIsWrong();
-        if(runningQuestion < lastQuestion){
-            runningQuestion ++;
-            renderQuestion();
-        }else{
-            clearInterval(TIMER);
-            scoreRender();
-        }
-    }
-}
+// function renderCounter(){
+//     if (count <=questionTime){
+//         counter.innerHtml = count;
+//         timeGauge.style.width = count * gaugeUnit + "px";
+//         count ++
+//     }else{
+//         count = 0;
+//         answerIsWrong();
+//         if(runningQuestion < lastQuestion){
+//             runningQuestion ++;
+//             renderQuestion();
+//         }else{
+//             clearInterval(TIMER);
+//             scoreRender();
+//         }
+//     }
+// }
 function check(answer){
     if (answer == questions[runningQuestion].correctAnswer){
         userScore++;
         answerIsCorrect();
     }else {
         answerIsWrong();
+    
     }
     count = 0; 
     if(runningQuestion < lastQuestion){
@@ -124,6 +145,7 @@ function answerIsCorrect(){
 }
 function answerIsWrong(){
     alert("SORRY!");
+    timer --;
 }
 
 function scoreRender(){
@@ -131,7 +153,6 @@ function scoreRender(){
     const scorePerCent = Math.round(100 * score/questions.length);
     
 }
-
 
 // start.addEventListener("click", )
 // function start () {

@@ -6,10 +6,13 @@ var bChoice= document.querySelector("#b");
 var cChoice = document.querySelector("#c");
 var dChoice = document.querySelector("#d");
 var userChoice= document.querySelector("#userChoice");
+var choiceResponse=document.querySelector("#choiceResponse");
 var answerChoices = document.querySelector("#choices");
 var timer = document.getElementById("counter");
 var timeGauge = document.getElementById("timeGuage");
-
+var progress = document.getElementById("progress");
+var scoreDiv = document.getElementById("scoreContainer");
+var userScore = localStorage.getItem(userScore);
 
 let questions = [{
         question: "Who was Sarpedon's father in the Iliad?",
@@ -49,6 +52,7 @@ let score=0;
 
 
 function renderQuestion () {
+    choiceResponse.style.display="none";
     let q = questions[runningQuestion];
 
     question.innerHTML = "<p> Question " + (runningQuestion+1) + ": " + q.question +"</p>";
@@ -74,33 +78,36 @@ function renderProgress(){
     }
 }
 
-
-function renderCounter(){
-    if (count <= questionTime){
-        count.innerHTML = count;
-        timeGauge.style.width = count * guageUnit + "px";
-        count ++
-    }else{
-        count = 0;
+function check(answer){
+    if (answer == questions[runningQuestion].correctAnswer){
+        userScore++;
+        answerIsCorrect();
+    }else {
         answerIsWrong();
-        if (runningQuestion < lastQuestion){
-            runningQuestion++;
-            renderQuestion();
-        }else {
-            cleartInterval(TIMER);
-            scoreRender();
-        }
     }
-function answerisCorrect (){
-    document.getElementById(runningQuestion).style.backgroundColor= "blue";
+    count = 0; 
+    if(runningQuestion < lastQuestion){
+        runningQuestion++;
+        renderQuestion();
+    }else{
+        clearInterval(TIMER);
+        scoreRender();
+        localStorage.setItem("userScore",userScore);
+    }
 }
 
-
-
-
-
+function answerIsCorrect(){
+    alert("You are Correct!");
+}
+function answerIsWrong(){
+    alert("SORRY!");
 }
 
+function scoreRender(){
+    scoreDiv.style.display ="block"
+    const scorePerCent = Math.round(100 * score/questions.length);
+    
+}
 
 
 // start.addEventListener("click", )

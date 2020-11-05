@@ -73,6 +73,8 @@ function renderProgress(){
         Progress.innerHTML +="<div class='prog' id ="+qindex+"></div>";
     }
 }
+
+
 function renderCounter(){
     if (count <= questionTime){
         count.innerHTML = count;
@@ -89,6 +91,14 @@ function renderCounter(){
             scoreRender();
         }
     }
+function answerisCorrect (){
+    document.getElementById(runningQuestion).style.backgroundColor= "blue";
+}
+
+
+
+
+
 }
 
 

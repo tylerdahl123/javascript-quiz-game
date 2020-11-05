@@ -3,22 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>QUIZ</title>
 </head>
 <body>
     <div class="container">
-        <h1>ILLIAD QUIZ</h1>
-        <div id="theQuiz" class="row quiz">
-                <div class="col-sm-12">
-                    <h2 id="header"></h2>
+        <h1>ILIAD QUIZ</h1>
+        <div id="start"><button id ="startBtn">START QUIZ</button></div>
+        <div id="Quiz" style="display:none">
+            <div id="theQuestions"></div>
+            <div id="choices" style="display:none">
+                <div class ="choice" id="a" onclick="check('a')"></div>
+                <div class="choice" id="b" onclick= "check('b')"></div>
+                <div class="choice" id="c" onclick= "check('c')"></div>
+                <div class="choice" id="d" onclick= "check('d')"></div>
+            </div>
+                <div id="timer">
+                    <div id="counter"></div>
+                    <div id="wtimeGauge"></div>
+                    <div id="timeGauge"></div>
                 </div>
+                <div id="progress"></div>
         </div>
-        <div id="theQuestions" class="row">
+        <div id="scoreContainer" style="display: none"></div>
+    </div>
+      <script src="script.js"></script>          
+                
+        
+        <!--  -->
+</body>
+</html>
+
+
+
+
+
+<!-- <div id="theQuestions" class="row">
             <div class-"col-sm-4"><a data-id="1" class="buttonAnswer>1</a></div>
         </div>
         <div id="startBtn"><button class="start" onClick= "start()">START!</button></div>
         <div id="quiz" style="display:none"></div>
-        <h2 id="theQuestions" class ="row"></h2>
+        
             <div id="answerChoices">
                 <button  id="a"></button>
                 <button id="b"></button>
@@ -30,6 +54,4 @@
             <div id="highScoremessage"></div>
             <div><button id="restart" class="quizRestart">TRY AGAIN?</button></div>
     </div> 
-    <script src="script.js"></script>
-</body>
-</html>
+     -->

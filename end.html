@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WELL DONE!</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="game.css"> -->
+</head>
+<body>
+    <div class="container">
+        <div id="end" class="flex-center flex-column">
+            <h1 id="finalScore">0</h1>
+            <form>
+                <input type="text" name="username" id="usernamer" placeholder="usernamer"/>
+                <button type="submit" class="btn" id="saveScoreBtn" onClick="saveHighScore(event)">SAVE</button>
+                <a class="btn" href="game.html">RESTART</a>
+                <a class="btn" href="/">GO HOME</a>
+            </form>
+        </div>
+    </div>
+    <script src ="end.js"></script>
+</body>
+</html>

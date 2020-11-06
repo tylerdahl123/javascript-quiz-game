@@ -46,12 +46,15 @@ function startGame() {
     console.log(availableQuestions);
     getNewQuestion();
 }
+
  function getNewQuestion() {
-     if (availableQuestions.length ===0 || questionCounter > MAX_QUESTIONS); { // so this bascially checks to see how many questions are left in the hopper. if there are some left it will keep spitting out questions...if it gets to the end then it will return me to my end page.//
-        //  return window.location.assign(end.html);
-     }
+    if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+        localStorage.setItem("mostRecentScore", score);
+        //go to the end page
+        return window.location.assign("end.html");
+      }
     questionCounter++;
-    questionCounterText.innerHTML = `${questionCounter}/${MAX_QUESTIONS}`;
+    questionCounterText.innerHTML = questionCounter + "/" + MAX_QUESTIONS;
 ;
 
      const questionIndex= Math.floor(Math.random() * availableQuestions.length);
@@ -81,6 +84,9 @@ choices.forEach(choice => {
         if (selectedAnswer == currentQuestion.answer){
             classToApply = "correct";
         }
+        if (classToApply == "correct") {
+            incrementScore(CORRECT_BONUS);
+        }
         selectedChoice.parentElement.classList.add(classToApply);
 
 
@@ -95,6 +101,9 @@ choices.forEach(choice => {
     })
 })
 
-    
+    function incrementScore(num) {
+        score +=num;
+        scoreText.innerText= score;
+    }
 
 startGame();

@@ -15,6 +15,10 @@ var scoreDiv = document.querySelector("#scoreContainer");
 var userScore = JSON.parse(localStorage.getItem(userScore));
 var highScore = JSON.parse(localStorage.getItem(highScore));
 var highDiv= document.querySelector("#highScoreContainer");
+var quizRestart = document.querySelector("#quizRestart");
+var currentRoundScore = 0;
+// var newHighScore = 0;
+
 
 
 let questions = [{
@@ -50,7 +54,7 @@ const gaugeWidth =150;
 const gaugeUnit= gaugeWidth / questionTime;
 // let TIMER;
 let score=0;
-var highScore = 0;
+// var highScore = 0;
 
 
 
@@ -144,7 +148,7 @@ function check(answer){
         clearInterval(timer);
         scoreRender();
         localStorage.setItem("userScore",userScore);
-        localStorage.setItem("highScore", highScore);
+        
     }
 }
 
@@ -160,15 +164,15 @@ function scoreRender(){
     Quiz.style.display="none";
     scoreDiv.style.display="block";
     highDiv.style.display="block";
+    quizRestart.style.display = "block";
+
     scoreDiv.innerHTML = "<p>SCORE: " + userScore + " out of 10</p>";
-    highDiv.innerHTML= "<p> PREVIOUS HIGH SCORE: " + highScore + " !";
-    if (userScore > highScore){
-        userScore.append(highScore);
-        console.log(highScore);
-    }
-    // const scorePerCent = Math.round(100 * score/questions.length);
     
-}
+    quizRestart.innerHTML="<p> REFRESH TO TRY AGAIN!</p>";
+    if (userScore > localStorage.getItem("highScore")) {
+        localStorage.setItem("highScore", userScore)
+    }
+}highDiv.innerHTML= "<p>HIGH SCORE: " + highScore + " !</p>";
 
 // start.addEventListener("click", )
 // function start () {

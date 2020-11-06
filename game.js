@@ -49,7 +49,7 @@ var interval = setInterval(function(){
 counter.style.display = "block";
   if (count === 0){
     clearInterval(interval);
-    document.getElementById('count').innerHTML="00:" + sec;
+    // document.getElementById('count').innerHTML="00:" + sec;
     // or...
     alert("You're out of time!");
     return window.location.assign("index.html");
@@ -101,7 +101,9 @@ choices.forEach(choice => {
         const selectedChoice = e.target;
         const selectedAnswer = selectedChoice.dataset["number"];
         
-        var classToApply = "incorrect";//so by setting the default answer to incorrect i can avoid a bunch of if else statements but just seeing if my selected answer equals the answer i have in my questions array...if it does it changes the class to correct.
+        var classToApply = "incorrect";
+        if (classToApply == "incorrect"){
+            count-5;  }//so by setting the default answer to incorrect i can avoid a bunch of if else statements but just seeing if my selected answer equals the answer i have in my questions array...if it does it changes the class to correct.
         if (selectedAnswer == currentQuestion.answer){
             classToApply = "correct";
         }

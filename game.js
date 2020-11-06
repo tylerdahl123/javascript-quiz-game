@@ -6,7 +6,8 @@ let acceptingAnswers = false;
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
-
+const questionCounterText = document.getElementById("question-counter");
+const scoreText = document.getElementById("Score");
 let questions = [
     {
     question: "Who was Sarpedon's father in the Iliad?",
@@ -36,7 +37,7 @@ let questions = [
 
 
 const CORRECT_BONUS = 5;//this is used to record how many points for a correct answer they get
-const MAX_QUESTIONS = 3;//this is used to determinet he max number of questions the quiz will ask before declaring it over. 
+const MAX_QUESTIONS = 4;//this is used to determinet he max number of questions the quiz will ask before declaring it over. 
 
 function startGame() {
     questionCounter = 0;
@@ -46,7 +47,13 @@ function startGame() {
     getNewQuestion();
 }
  function getNewQuestion() {
+     if (availableQuestions.length ===0 || questionCounter > MAX_QUESTIONS); { // so this bascially checks to see how many questions are left in the hopper. if there are some left it will keep spitting out questions...if it gets to the end then it will return me to my end page.//
+        //  return window.location.assign(end.html);
+     }
     questionCounter++;
+    questionCounterText.innerHTML = `${questionCounter}/${MAX_QUESTIONS}`;
+;
+
      const questionIndex= Math.floor(Math.random() * availableQuestions.length);
      currentQuestion =availableQuestions[questionIndex];
      question.innerText = currentQuestion.question;
@@ -69,8 +76,22 @@ choices.forEach(choice => {
         acceptingAnswers = false;
         const selectedChoice = e.target;
         const selectedAnswer = selectedChoice.dataset["number"];
-        console.log(selectedAnswer);
-        getNewQuestion();
+        
+        var classToApply = "incorrect";//so by setting the default answer to incorrect i can avoid a bunch of if else statements but just seeing if my selected answer equals the answer i have in my questions array...if it does it changes the class to correct.
+        if (selectedAnswer == currentQuestion.answer){
+            classToApply = "correct";
+        }
+        selectedChoice.parentElement.classList.add(classToApply);
+
+
+        setTimeout (function() {
+         selectedChoice.parentElement.classList.remove(classToApply);
+         getNewQuestion();
+         
+        }, 1000);// sets a timer for the over all question...it takes a second for it to move on to the next page.
+        
+        console.log(classToApply);//it can compare if its true or false//
+        
     })
 })
 

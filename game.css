@@ -22,3 +22,25 @@
     cursor: pointer;
     box-shadow:0 0.4rem 1.4 rem 0 rgba(86, 185,235,0.5);
 }
+
+.correct {
+    background-color : #28a745;
+}
+
+.incorrect {
+    background-color :red;
+}
+
+#hud {
+    display:flex;
+    justify-content: space-between;
+}
+
+.hud-prefix {
+    text-align: center;
+    font-size:2rem;
+}
+
+.hud-main-text {
+    text-align: center;
+}

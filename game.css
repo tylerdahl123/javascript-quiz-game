@@ -45,6 +45,9 @@
     text-align: center;
 }
 
+#counter {
+    font-size:25px;
+}
 /* form {
     width:100%;
     display:flex;

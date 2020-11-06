@@ -8,6 +8,8 @@ let questionCounter = 0;
 let availableQuestions = [];
 const questionCounterText = document.getElementById("question-counter");
 const scoreText = document.getElementById("Score");
+var start = document.getElementsByClassName("btn-start");
+var counter = document.getElementById("counter");
 let questions = [
     {
     question: "Who was Sarpedon's father in the Iliad?",
@@ -39,12 +41,31 @@ let questions = [
 const CORRECT_BONUS = 5;//this is used to record how many points for a correct answer they get
 const MAX_QUESTIONS = 4;//this is used to determinet he max number of questions the quiz will ask before declaring it over. 
 
+
+var count = 60;
+var interval = setInterval(function(){
+  document.getElementById('counter').innerHTML=count;
+  count--;
+counter.style.display = "block";
+  if (count === 0){
+    clearInterval(interval);
+    document.getElementById('count').innerHTML="00:" + sec;
+    // or...
+    alert("You're out of time!");
+    return window.location.assign("index.html");
+  }
+}, 1000);
+console.log(interval);
+
+
+
 function startGame() {
     questionCounter = 0;
     score =0;
     availableQuestions = [...questions];//...spreads out the array so that it will use what is inside questions to populate the new array i.e. avaiable questions. this gets a full copy of each arrays and not just a one off  
     console.log(availableQuestions);
     getNewQuestion();
+    // startTimer();
 }
 
  function getNewQuestion() {
